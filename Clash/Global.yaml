@@ -124,52 +124,6 @@ dns:
 proxies:
 # 支持的协议及加密算法示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
 
-  # Shadowsocks(Websocket + TLS)
-  - name: "HK"
-    type: ss
-    server: server
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: "password"
-    plugin: v2ray-plugin
-    plugin-opts:
-      mode: websocket # no QUIC now
-      tls: true # wss
-      # skip-cert-verify: true
-      # host: bing.com
-      path: "/s"
-      # mux: true
-      # headers:
-      #   custom: value
-
-  # VMess(Websocket + TLS)
-  - name: "US"
-    type: vmess
-    server: v2ray.cool
-    port: 443
-    uuid: a3482e88-686a-4a58-8126-99c9df64b7bf
-    alterId: 32
-    cipher: auto
-    # udp: true
-    tls: true
-    # skip-cert-verify: true
-    network: ws
-    ws-path: /v
-    # ws-headers:
-    #   Host: v2ray.com
-
-  # Trojan
-  - name: "SG"
-    type: trojan
-    server: server
-    port: 443
-    password: yourpsk
-    # udp: true
-    # sni: example.com # aka server name
-    # alpn:
-    #   - h2
-    #   - http/1.1
-    # skip-cert-verify: true
 
 # 服务器节点订阅
 proxy-providers:
@@ -190,16 +144,6 @@ proxy-providers:
   #
   # 1.模式选择「进阶模式」 2.填写订阅链接 3.勾选「输出为 Node List」 4.「生成订阅链接」
   #
-
-  DuckDuckGo-Sub: # 冲鸭机场订阅链接
-    type: http
-    url: "https://duckduckgo.security/user/sub.php?token=DivineEngine"
-    interval: 3600
-    path: ./Proxy/ProxyList.yaml # 不同机场不同命名
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
 
 proxy-groups:
 # 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
@@ -256,12 +200,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - HK
-
-  # 手动选择节点订阅
-  - name: "DuckDuckGo"
-    type: select # 亦可使用 fallback 或 load-balance
-    use:
-      - DuckDuckGo-Sub
 
 # 关于 Rule Provider 请查阅：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider
 
